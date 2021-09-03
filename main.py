@@ -1,8 +1,14 @@
 from src.classes.cidade import Cidade
+import json
 
 sair = False
 
-lista_cidades = []
+#abre arquivo jSON
+arquivo = open('./src/bd/bd.json', 'r')
+#Lê o arquivo jSON
+lista_cidades = json.loads(arquivo.read())
+#fecha o arquivo
+arquivo.close()
 
 while sair == False:
 
@@ -17,7 +23,14 @@ while sair == False:
     nova_cidade = Cidade(nome_cidade, populacao_cidade, uf)
 
     #adiciona a cidade na lista
-    lista_cidades.append(nova_cidade)
+    lista_cidades.append({
+        "nome": nova_cidade.nome,
+        "populacao": nova_cidade.populacao,
+        "uf":{
+            "sigla": nova_cidade.uf["sigla"],
+            "nome": nova_cidade.uf["nome"],
+        }
+    })
 
     resposta = input('Deseja cadastrar outra cidade? (S/N) ')
 
@@ -31,4 +44,9 @@ while sair == False:
     if resposta.upper() == 'N':
         sair = True
 
-print(lista_cidades)        
+#Abre o arquivo Json em modo escrita
+arquivo = open('./src/bd/bd.json', 'w')
+#Escreve no arquivo json a lista_cidades
+arquivo.write(json.dumps(lista_cidades))
+#Fecha o arquivo Json
+arquivo.close()      

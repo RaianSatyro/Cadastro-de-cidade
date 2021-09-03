@@ -15,7 +15,7 @@ class Cidade:
     def populacao(self):
         return self.__populacao
     @populacao.setter
-    def popualacao(self, populcao):
+    def populacao(self, populcao):
         self.__populacao = populcao
     
     @property
