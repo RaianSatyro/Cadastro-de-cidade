@@ -4,6 +4,9 @@ class Cidade:
         self.__populacao = populacao
         self.__uf = uf
 
+    def __str__(self):
+        return f'''Nome: {self.__nome}'''
+
     @property
     def nome(self):
         return self.__nome

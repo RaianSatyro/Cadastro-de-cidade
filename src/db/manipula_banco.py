@@ -19,15 +19,8 @@ def set_list_cidades(lista_cidades):
     arquivo.close() 
 
 
-def add_cidade(nova_cidade):
-    cidade_json = {
-        "nome": nova_cidade.nome,
-        "populacao": nova_cidade.populacao,
-        "uf":{
-            "sigla": nova_cidade.uf["sigla"],
-            "nome": nova_cidade.uf["nome"],
-        }
-    }
+def add_cidade(cidade_json):
+    
 
     lista_cidade = get_list_cidades()
     lista_cidade.append(cidade_json)
